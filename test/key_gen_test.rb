@@ -36,4 +36,29 @@ class KeyGeneratorTest < Minitest::Test
     assert_equal 5, result3
   end
 
+  def test_key_rotation_a_is_created
+    key = KeyGenerator.new("84795")
+    assert_equal 84, key.a_rotation
+  end
+
+  def test_key_rotation_a_is_created_if_zero_is_the_first_digit
+    key = KeyGenerator.new("04795")
+    assert_equal 4, key.a_rotation
+  end
+
+  def test_key_rotation_b_is_created
+    key = KeyGenerator.new("70839")
+    assert_equal 8, key.b_rotation
+  end
+
+  def test_key_rotation_c_is_created
+    key = KeyGenerator.new("02819")
+    assert_equal 81, key.c_rotation
+  end
+
+  def test_key_rotation_d_is_created
+    key = KeyGenerator.new("74033")
+    assert_equal 33, key.d_rotation
+  end
+
 end
