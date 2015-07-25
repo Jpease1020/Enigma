@@ -1,8 +1,11 @@
+require_relative 'key_generator'
+
 class Offset
 
-  attr_reader :date
-  def initialize(date)
+  attr_reader :date, :key
+  def initialize(date, key)
     @date = date
+    @key = KeyGenerator.new(key)
   end
 
   def squared
@@ -30,6 +33,21 @@ class Offset
     last_four[3].to_i
   end
 
+  def full_rotation_a
+    offset_a + key.a_rotation
+  end
+
+  def full_rotation_b
+    offset_b + key.b_rotation
+  end
+
+  def full_rotation_c
+    offset_c + key.c_rotation
+  end
+
+  def full_rotation_d
+    offset_d + key.d_rotation
+  end
 
 end
 
