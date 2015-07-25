@@ -27,11 +27,13 @@ class KeyGeneratorTest < Minitest::Test
   def test_key_invalid_if_input_length_is_greater_or_less_than_5
     key1 = KeyGenerator.new("84990")
     key2 = KeyGenerator.new("231345345236")
+    key3 = KeyGenerator.new("840")
     result1 = key1.key.length
     result2 = key2.key.length
-
+    result3 = key3.key.length
     assert_equal 5, result1
     assert_equal 5, result2
+    assert_equal 5, result3
   end
 
 end
