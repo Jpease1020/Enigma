@@ -1,6 +1,6 @@
 require_relative 'key_generator'
 
-class Offset
+class OffsetCalculator
 
   attr_reader :date, :key
   def initialize(date, key)
@@ -49,18 +49,8 @@ class Offset
     offset_d + key.d_rotation
   end
 
+  def full_rotations
+    [full_rotation_a, full_rotation_b, full_rotation_c, full_rotation_d]
+  end
+
 end
-
-
-
-
-
-# The Offsets
-#
-# The date of message transmission is also factored into the encryption
-# Consider the date in the format DDMMYY, like 020315
-# Square the numeric form (412699225) and find the last four digits (9225)
-# The first digit is the "A offset" (9)
-# The second digit is the "B offset" (2)
-# The third digit is the "C offset" (2)
-# The fourth digit is the "D offset" (5)

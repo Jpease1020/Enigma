@@ -1,6 +1,9 @@
 class KeyGenerator
   attr_reader :key
 
+###############   we need to output the key if its randomly generated so we can assure the encrytp and decrytp
+####### have all the peritnant info the work properly
+
   def initialize(key = nil)
     @key = key
     if key.nil?
