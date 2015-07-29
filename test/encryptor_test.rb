@@ -6,31 +6,6 @@ require '../lib/encryptor'
 
 class EncryptorTest < Minitest::Test
 
-  def test_character_map_returns_specific_values
-    encryptor = Encryptor.new("Hello", "072615","94321")
-    result = encryptor.character_map[0]
-    result1 = encryptor.character_map[10]
-
-    assert_equal "0", result
-    assert_equal "a", result1
-  end
-
-  def test_cipher_rotates_characters_by_2_rotations
-    encryptor = Encryptor.new("Hello", "072615","94321")
-    cipher = encryptor.cipher(2)
-    result = cipher["0"]
-
-    assert_equal "2", result
-  end
-
-  def test_cipher_rotates_characters_by_negative_3_rotations
-    encryptor = Encryptor.new("hello", "072615","94321")
-    cipher = encryptor.cipher(-3)
-    result = cipher["0"]
-
-    assert_equal " ", result
-  end
-
   def test_encrypt_character_encrypts_a_letter
     encryptor = Encryptor.new("hello", "072615","94321")
     result = encryptor.encrypt_character("h", 6)
