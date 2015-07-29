@@ -7,8 +7,6 @@ require '../lib/key_generator'
 
 class OffsetCalculatorTest < Minitest::Test
 
-###### test if no date is passed in.....build method to give todays date
-# make test and method if date input is funky
   def test_date_can_be_taken_into_offsetcalculator_machine
     offset = OffsetCalculator.new("072513", "83742")
 

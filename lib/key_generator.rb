@@ -16,8 +16,7 @@ class KeyGenerator
   def invalid_key(input)
     key = input
     if (input =~ /[a-z]/) || (input.size != 5)
-      puts "Your key is invalid, we're giving you a new one!"
-      random_generator
+      "#{@key} is invalid, please try again moron :P"
     else
       @key
     end

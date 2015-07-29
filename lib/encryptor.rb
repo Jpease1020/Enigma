@@ -3,11 +3,12 @@ require_relative 'cipher'
 
 class Encryptor
 
-attr_accessor :rotations
+attr_accessor :rotations, :key
   def initialize(message, date = nil, key = nil)
     @message = message.downcase.split("")
     key_offset = OffsetCalculator.new(date, key)
     @rotations = key_offset.full_rotations
+    @key = key_offset.key
   end
 
   def encrypt

@@ -1,81 +1,43 @@
-require_relative 'cipher'   # => true
-require_relative 'decrypt'  # => true
+require_relative 'cipher'
+require_relative 'decryptor'
 
 class MessageCracker
 
   def initialize(encrypted_message)
-    @encrypted_message = encrypted_message.reverse  # => "mo8t,ow398gk2"
-  end                                               # => :initialize
+    @encrypted_message = encrypted_message.reverse
+  end
 
   def reverse_message_ending
-    @encrypted_message[0..3].chars  # => ["m", "o", "8", "t"], ["m", "o", "8", "t"], ["m", "o", "8", "t"], ["m", "o", "8", "t"], ["m", "o", "8", "t"], ["m", "o", "8", "t"], ["m", "o", "8", "t"], ["m", "o", "8", "t"], ["m", "o", "8", "t"], ["m", "o", "8", "t"], ["m", "o", "8", "t"], ["m", "o", "8", "t"], ["m", "o", "8", "t"], ["m", "o", "8", "t"], ["m", "o", "8", "t"], ["m", "o", "8", "t"], ["m", "o", "8", "t"], ["m", "o", "8", "t"], ["m", "o", "8", "t"], ["m", "o", "8", "t"], ["m", "o", "8", "t"], ["m", "o", "8", "t"], ["m", "o", "8", "t"], ["m", "o", "8", "t"], ["m", "o", "8", "t"], ["m", "o", "8", "t"], ["m", "o", "8", "t"], ["m", "o", "8", "t"], ["m", "o", "8", "t"], ["m", "o", "8", "t"], ["m", "o", "8", "t"], ["m", "o", "8", "t"], ["m", "o", "8", "t"], ["m", "o", "8", "t"], ["m", "o", "8", "t"], ["m", "o", "8", "t"], ["m", "o", "8", "t"], ["m", "o", "8", "t"], ["m", "o", "8", "t"], ["m", "o", "8", "t"], ["m", "o", "8", "t"], ["m", "o", "8", "t"], ["m", "o", "8", "t"], ["m", "o",...
-  end                               # => :reverse_message_ending
+    @encrypted_message[0..3].chars
+  end
 
   def char_map_index
-    reverse_message_ending.map do |char|    # => ["m", "o", "8", "t"], ["m", "o", "8", "t"], ["m", "o", "8", "t"], ["m", "o", "8", "t"], ["m", "o", "8", "t"], ["m", "o", "8", "t"], ["m", "o", "8", "t"], ["m", "o", "8", "t"], ["m", "o", "8", "t"], ["m", "o", "8", "t"], ["m", "o", "8", "t"], ["m", "o", "8", "t"], ["m", "o", "8", "t"], ["m", "o", "8", "t"], ["m", "o", "8", "t"], ["m", "o", "8", "t"], ["m", "o", "8", "t"], ["m", "o", "8", "t"], ["m", "o", "8", "t"], ["m", "o", "8", "t"], ["m", "o", "8", "t"], ["m", "o", "8", "t"], ["m", "o", "8", "t"], ["m", "o", "8", "t"], ["m", "o", "8", "t"], ["m", "o", "8", "t"], ["m", "o", "8", "t"], ["m", "o", "8", "t"], ["m", "o", "8", "t"], ["m", "o", "8", "t"], ["m", "o", "8", "t"], ["m", "o", "8", "t"], ["m", "o", "8", "t"], ["m", "o", "8", "t"], ["m", "o", "8", "t"], ["m", "o", "8", "t"], ["m", "o", "8", "t"], ["m", "o", "8", "t"], ["m", "o", "8", "t"], ["m", "o", "8", "t"], ["m", "o", "8", "t"], ["m", "o", "8", "t"], ["m", "o", "8", "t"], ["...
-      Cipher.new.character_map.index(char)  # => 22, 24, 8, 29, 22, 24, 8, 29, 22, 24, 8, 29, 22, 24, 8, 29, 22, 24, 8, 29, 22, 24, 8, 29, 22, 24, 8, 29, 22, 24, 8, 29, 22, 24, 8, 29, 22, 24, 8, 29, 22, 24, 8, 29, 22, 24, 8, 29, 22, 24, 8, 29, 22, 24, 8, 29, 22, 24, 8, 29, 22, 24, 8, 29, 22, 24, 8, 29, 22, 24, 8, 29, 22, 24, 8, 29, 22, 24, 8, 29, 22, 24, 8, 29, 22, 24, 8, 29, 22, 24, 8, 29, 22, 24, 8, 29, 22, 24, 8, 29, 22, 24, 8, 29, 22, 24, 8, 29, 22, 24, 8, 29, 22, 24, 8, 29, 22, 24, 8, 29, 22, 24, 8, 29, 22, 24, 8, 29, 22, 24, 8, 29, 22, 24, 8, 29, 22, 24, 8, 29, 22, 24, 8, 29, 22, 24, 8, 29, 22, 24, 8, 29, 22, 24, 8, 29, 22, 24, 8, 29, 22, 24, 8, 29, 22, 24, 8, 29, 22, 24, 8, 29, 22, 24, 8, 29, 22, 24, 8, 29, 22, 24, 8, 29, 22, 24, 8, 29, 22, 24, 8, 29, 22, 24, 8, 29, 22, 24, 8, 29, 22, 24, 8, 29, 22, 24, 8, 29
-    end                                     # => [22, 24, 8, 29], [22, 24, 8, 29], [22, 24, 8, 29], [22, 24, 8, 29], [22, 24, 8, 29], [22, 24, 8, 29], [22, 24, 8, 29], [22, 24, 8, 29], [22, 24, 8, 29], [22, 24, 8, 29], [22, 24, 8, 29], [22, 24, 8, 29], [22, 24, 8, 29], [22, 24, 8, 29], [22, 24, 8, 29], [22, 24, 8, 29], [22, 24, 8, 29], [22, 24, 8, 29], [22, 24, 8, 29], [22, 24, 8, 29], [22, 24, 8, 29], [22, 24, 8, 29], [22, 24, 8, 29], [22, 24, 8, 29], [22, 24, 8, 29], [22, 24, 8, 29], [22, 24, 8, 29], [22, 24, 8, 29], [22, 24, 8, 29], [22, 24, 8, 29], [22, 24, 8, 29], [22, 24, 8, 29], [22, 24, 8, 29], [22, 24, 8, 29], [22, 24, 8, 29], [22, 24, 8, 29], [22, 24, 8, 29], [22, 24, 8, 29], [22, 24, 8, 29], [22, 24, 8, 29], [22, 24, 8, 29], [22, 24, 8, 29], [22, 24, 8, 29], [22, 24, 8, 29], [22, 24, 8, 29], [22, 24, 8, 29], [22, 24, 8, 29], [22, 24, 8, 29], [22, 24, 8, 29], [22, 24, 8, 29], [22, 24, 8, 29], [22, 24, 8, 29]
-  end                                       # => :char_map_index
+    reverse_message_ending.map do |char|
+      Cipher.new.character_map.index(char)
+    end
+  end
 
   def fixed_rotation_component
-    [2,2,26,16]                 # => [2, 2, 26, 16], [2, 2, 26, 16], [2, 2, 26, 16], [2, 2, 26, 16], [2, 2, 26, 16], [2, 2, 26, 16], [2, 2, 26, 16], [2, 2, 26, 16], [2, 2, 26, 16], [2, 2, 26, 16], [2, 2, 26, 16], [2, 2, 26, 16], [2, 2, 26, 16]
-  end                           # => :fixed_rotation_component
+    [2,2,26,16]
+  end
 
   def rotations
-    rotation = []                                       # => [], [], [], [], [], [], [], [], [], [], [], [], []
-    fixed_rotation_component.each_with_index do |n, i|  # => [2, 2, 26, 16], [2, 2, 26, 16], [2, 2, 26, 16], [2, 2, 26, 16], [2, 2, 26, 16], [2, 2, 26, 16], [2, 2, 26, 16], [2, 2, 26, 16], [2, 2, 26, 16], [2, 2, 26, 16], [2, 2, 26, 16], [2, 2, 26, 16], [2, 2, 26, 16]
-      rotation << (n + char_map_index[i])               # => [24], [24, 26], [24, 26, 34], [24, 26, 34, 45], [24], [24, 26], [24, 26, 34], [24, 26, 34, 45], [24], [24, 26], [24, 26, 34], [24, 26, 34, 45], [24], [24, 26], [24, 26, 34], [24, 26, 34, 45], [24], [24, 26], [24, 26, 34], [24, 26, 34, 45], [24], [24, 26], [24, 26, 34], [24, 26, 34, 45], [24], [24, 26], [24, 26, 34], [24, 26, 34, 45], [24], [24, 26], [24, 26, 34], [24, 26, 34, 45], [24], [24, 26], [24, 26, 34], [24, 26, 34, 45], [24], [24, 26], [24, 26, 34], [24, 26, 34, 45], [24], [24, 26], [24, 26, 34], [24, 26, 34, 45], [24], [24, 26], [24, 26, 34], [24, 26, 34, 45], [24], [24, 26], [24, 26, 34], [24, 26, 34, 45]
-    end                                                 # => [2, 2, 26, 16], [2, 2, 26, 16], [2, 2, 26, 16], [2, 2, 26, 16], [2, 2, 26, 16], [2, 2, 26, 16], [2, 2, 26, 16], [2, 2, 26, 16], [2, 2, 26, 16], [2, 2, 26, 16], [2, 2, 26, 16], [2, 2, 26, 16], [2, 2, 26, 16]
-    rotation                                            # => [24, 26, 34, 45], [24, 26, 34, 45], [24, 26, 34, 45], [24, 26, 34, 45], [24, 26, 34, 45], [24, 26, 34, 45], [24, 26, 34, 45], [24, 26, 34, 45], [24, 26, 34, 45], [24, 26, 34, 45], [24, 26, 34, 45], [24, 26, 34, 45], [24, 26, 34, 45]
-  end                                                   # => :rotations
+    rotation = []
+    fixed_rotation_component.each_with_index do |n, i|
+      rotation << (n + char_map_index[i])
+    end
+    rotation
+  end
 
   def crack_message
-    rotation_index = 0                                                              # => 0
-    encrypted_message = @encrypted_message.split('').map do |letter|                # => ["m", "o", "8", "t", ",", "o", "w", "3", "9", "8", "g", "k", "2"]
-      rotation_index = 0 if (!rotation_index.zero?) && ((rotation_index) % 4 == 0)  # => nil, nil, nil, nil, 0, nil, nil, nil, 0, nil, nil, nil, 0
-      rotation_index += 1                                                           # => 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1
-      cipher = Cipher.new((-1)*rotations[rotation_index - 1])                       # => #<Cipher:0x007fbd5a0998a8 @rotation=-24>, #<Cipher:0x007fbd5a078428 @rotation=-26>, #<Cipher:0x007fbd5a058a60 @rotation=-34>, #<Cipher:0x007fbd5b04c0c0 @rotation=-45>, #<Cipher:0x007fbd5b84aad8 @rotation=-24>, #<Cipher:0x007fbd5b8232f8 @rotation=-26>, #<Cipher:0x007fbd5b026000 @rotation=-34>, #<Cipher:0x007fbd5a875a40 @rotation=-45>, #<Cipher:0x007fbd5a84ea08 @rotation=-24>, #<Cipher:0x007fbd5a81faa0 @rotation=-26>, #<Cipher:0x007fbd5b8a0e88 @rotation=-34>, #<Cipher:0x007fbd5b8d8e50 @rotation=-45>, #<Cipher:0x007fbd5b8b3da8 @rotation=-24>
-      cipher.cipher[letter]                                                         # => ".", ".", "d", "n", "e", ".", ".", " ", "o", "l", "l", "e", "h"
-      end                                                                           # => [".", ".", "d", "n", "e", ".", ".", " ", "o", "l", "l", "e", "h"]
-    encrypted_message.join.reverse                                                  # => "hello ..end.."
-  end                                                                               # => :crack_message
+    rotation_index = 0
+    encrypted_message = @encrypted_message.split('').map do |letter|
+      rotation_index = 0 if (!rotation_index.zero?) && ((rotation_index) % 4 == 0)
+      rotation_index += 1
+      cipher = Cipher.new((-1)*rotations[rotation_index - 1])
+      cipher.cipher[letter]
+      end
+    encrypted_message.join.reverse
+  end
 
-end  # => :crack_message
-
-
-
-
-# message = Decryptor.new(encrypted_message, "072615","94321")
-# result2 = message.decrypt
-# encrypted_message = "2kg893wo,t8om"
-
-
-# # h is 24 away from 2
-# # e is 6 away from k
-# l is 34 away from g
-# l is 26 away from 8
-# o is 24 away from 9
-# " " is 6 away from 3
-# . is 34  away from w
-# . is 26 away from o
-# e is 24 away from ,
-# n is 6 away from t
-# d is 34 away from 8
-# . is 26 away from o
-# . is 24 away from m
-#
-# encryptor = Encryptor.new("Hello ..end..", "072615","94321")
-# encryptor.encrypt
-# encryptor.encrypt_character("m",  - 24)
-# encryptor.encrypt_character("o",  - 26)
-# encryptor.encrypt_character("8",  - 34)
-# encryptor.encrypt_character("t",  - 6)
-# encryptor.encrypt_character(",",  - 24)
-# encryptor.encrypt_character("o",  - 26)
-# encryptor.encrypt_character("w",  - 34)
-# encryptor.encrypt_character("3",  - 6)
-# encryptor.encrypt_character("9",  - 24)
-# encryptor.encrypt_character("8",  - 26)
-# encryptor.encrypt_character("g",  - 34)
-# encryptor.encrypt_character("k",  - 6)
-# encryptor.encrypt_character("2",  - 24)
+end

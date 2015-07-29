@@ -1,20 +1,7 @@
-require_relative 'encryptor'
-class Decryptor
-
-  def initialize(encrypted_message, date, key)
-    @decrypt = Encryptor.new(encrypted_message,date,key)
-  end
-
-  def negative_rotations
-    negative_rotations = @decrypt.rotations.map! do |rotation|
-      rotation * (-1)
-    end
-    negative_rotations
-  end
-
-  def decrypt
-    negative_rotations
-    @decrypt.encrypt
-  end
-
-end
+require_relative 'file_io'  # => true
+input_file = ARGV[0]             # => nil
+output_file = ARGV[1]
+key = ARGV[2]
+date = ARGV[3]
+file = FileIO.new(input_file, output_file, key, date)
+file.decrypt
