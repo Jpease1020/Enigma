@@ -39,5 +39,31 @@ class MessageCracker
       end
     encrypted_message.join.reverse
   end
-
 end
+
+def possible_key(first_array, second_array)
+  possible_key = []
+  possible_key << first_array[0] - second_array[0].to_i
+  possible_key << first_array[1] - second_array[1].to_i
+  possible_key << first_array[2] - second_array[2].to_i
+  possible_key << first_array[3] - second_array[3].to_i
+  possible_key
+end
+
+encryptor = Encryptor.new("..end..", "072615","94321")
+input = encryptor.rotations
+a = encryptor.date.to_i
+b = (a ** 2).to_s[-4..-1].to_i
+c = b.to_s.chars
+encryptor.encrypt
+a = encryptor.rotations
+possible_key(input,c)
+
+
+encryptor2 = Encryptor.new("..end..", "072615","97821")
+input2 = encryptor2.rotations
+d = encryptor2.date.to_i
+e = (d ** 2).to_s[-4..-1].to_i
+f = e.to_s.chars
+
+ possible_key(input2, f)

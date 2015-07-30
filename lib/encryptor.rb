@@ -4,7 +4,7 @@ require_relative 'cipher'
 class Encryptor
 
   attr_accessor :rotations, :key
-
+  attr_reader :date
   def initialize(message, date = nil, key = nil)
     @message = message.downcase
     if valid_message(@message) == false
@@ -15,6 +15,7 @@ class Encryptor
     key_offset = OffsetCalculator.new(date, key)
     @rotations = key_offset.full_rotations
     @key = key_offset.key
+    @date = date
   end
 
   def valid_message(message)
