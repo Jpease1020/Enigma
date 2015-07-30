@@ -57,7 +57,7 @@ b = (a ** 2).to_s[-4..-1].to_i
 c = b.to_s.chars
 encryptor.encrypt
 a = encryptor.rotations
-possible_key(input,c)
+possible_key(input,c) # => [94, 43, 32, 21]
 
 
 encryptor2 = Encryptor.new("..end..", "072615","97821")
@@ -66,4 +66,4 @@ d = encryptor2.date.to_i
 e = (d ** 2).to_s[-4..-1].to_i
 f = e.to_s.chars
 
- possible_key(input2, f)
+ possible_key(input2, f) # => [97, 78, 82, 21]
