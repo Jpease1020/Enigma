@@ -1,5 +1,5 @@
-# require 'simplecov'
-# SimpleCov.start
+require 'simplecov'
+SimpleCov.start
 require 'minitest/autorun'
 require 'minitest/pride'
 require '../lib/offset'
@@ -52,7 +52,7 @@ class OffsetCalculatorTest < Minitest::Test
   end
 
   def test_offset_d_is_created
-    offset = OffsetCalculator.new("072515", "234225524q24")
+    offset = OffsetCalculator.new("072515", "23400")
 
     assert_equal 5, offset.offset_d
   end

@@ -24,4 +24,11 @@ class FileIO
     File.write(@output_file, decrypted_message.decrypt)
     puts "Created '#{@output_file}' with the key #{@key} and date #{@date}"
   end
+
+  def crack
+    message_input = File.readlines(@input_file).map{|line| line.chomp}.join
+    cracked_message = MessageCracker.new(message_input)
+    File.write(@output_file, cracked_message.crack_message)
+    puts "Created '#{@output_file}' with the cracked key ------ and date #{@date}"
+  end
 end

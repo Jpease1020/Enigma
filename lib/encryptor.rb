@@ -3,12 +3,24 @@ require_relative 'cipher'
 
 class Encryptor
 
-attr_accessor :rotations, :key
+  attr_accessor :rotations, :key
+
   def initialize(message, date = nil, key = nil)
-    @message = message.downcase.split("")
+    @message = message.downcase
+    if valid_message(@message) == false
+      raise ArgumentError.new("#{@message} is invalid, please try again")
+    else
+      @message = message.downcase.split("")
+    end
     key_offset = OffsetCalculator.new(date, key)
     @rotations = key_offset.full_rotations
     @key = key_offset.key
+  end
+
+  def valid_message(message)
+    message.chars.all? do |letter|
+       Cipher.new.character_map.include?(letter)
+     end
   end
 
   def encrypt

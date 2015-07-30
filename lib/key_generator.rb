@@ -1,8 +1,5 @@
-class KeyGenerator
+  class KeyGenerator
   attr_reader :key
-
-###############   we need to output the key if its randomly generated so we can assure the encrytp and decrytp
-####### have all the peritnant info the work properly
 
   def initialize(key = nil)
     @key = key
@@ -13,10 +10,16 @@ class KeyGenerator
     end
   end
 
+  def invalid_key_checker(input)
+    input.chars.all? do |number|
+      ("0".."9").include?(number)
+    end
+  end
+
   def invalid_key(input)
     key = input
-    if (input =~ /[a-z]/) || (input.size != 5)
-      "#{@key} is invalid, please try again moron :P"
+    if (invalid_key_checker(input) == false) || (input.size != 5)
+      raise ArgumentError.new("#{@key} is invalid, please try again moron :P" )
     else
       @key
     end

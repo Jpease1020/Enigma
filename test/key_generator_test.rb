@@ -1,5 +1,5 @@
-# require 'simplecov'
-# SimpleCov.start
+require 'simplecov'
+SimpleCov.start
 require 'minitest/autorun'
 require 'minitest/pride'
 require '../lib/key_generator'
@@ -12,19 +12,22 @@ class KeyGeneratorTest < Minitest::Test
   end
 
   def test_if_no_key_given_a_random_number_key_is_generated
-    key = KeyGenerator.new
-    assert key.key.is_a?(String)
+    key1 = KeyGenerator.new
+    key2 = KeyGenerator.new
+
+    refute key1 == key2
   end
 
-  def test_invalid_key_with_letter_defaults_to_random_key
+  def test_key_with_letter_or_character_is_invlaid
     key = KeyGenerator.new("231j6")
     result = key.key
-    refute_equal "231j6", result
-    refute result =~ /[a-z]/
-    ############  we need a better test
+    result = assert_raises ArgumentError do
+      raise ArgumentError, "#{@key} is invalid, please try again moron :P"
+    end
+    assert_equal "#{@key} is invalid, please try again moron :P", result.message
   end
 
-  def test_key_invalid_if_input_length_is_greater_or_less_than_5
+  def test_key_length_is_greater_or_less_than_5_is_invalid
     key1 = KeyGenerator.new("84990")
     key2 = KeyGenerator.new("231345345236")
     key3 = KeyGenerator.new("840")
