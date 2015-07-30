@@ -12,10 +12,9 @@ class Encryptor
     else
       @message = message.downcase.split("")
     end
-    key_offset = OffsetCalculator.new(date, key)
-    @rotations = key_offset.full_rotations
-    @key = key_offset.key
-    @date = date
+    @rotations = OffsetCalculator.full_rotations(date, key)
+    @key       = key
+    @date      = date
   end
 
   def valid_message(message)

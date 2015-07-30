@@ -15,7 +15,7 @@ class FileIO
     message_input = File.readlines(@input_file).map{|line| line.chomp}.join
     encrypted_message = Encryptor.new(message_input, @date)
     File.write(@output_file, encrypted_message.encrypt)
-    puts "Created '#{@output_file}' with the key #{encrypted_message.key.key} and date #{@date}"
+    puts "Created '#{@output_file}' with the key #{encrypted_message.key} and date #{@date}"
   end
 
   def decrypt

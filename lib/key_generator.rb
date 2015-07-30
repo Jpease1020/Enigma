@@ -1,4 +1,4 @@
-  class KeyGenerator
+class KeyGenerator
   attr_reader :key
 
   def initialize(key = nil)
@@ -44,5 +44,9 @@
 
   def d_rotation
     @key[3..4].to_i
+  end
+
+  def to_s
+    @key.to_s
   end
 end
